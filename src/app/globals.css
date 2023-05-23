@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.main-bg{
+  background-image: url('https://www.promiedos.com.ar/images/menu/fondo.jpg');
+}
+
+.outline-hover:hover{
+  box-shadow: -5px 0px 0px 0px #6da851, 5px 0px 0px 0px  #6da851;
+}
