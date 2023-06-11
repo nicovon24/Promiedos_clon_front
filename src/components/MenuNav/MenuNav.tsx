@@ -1,7 +1,8 @@
 import { setActiveOptionShowAction } from "@/redux/actions/positions";
-import { setWhatToShow } from "@/redux/dataSlice";
+import { setScorersFunction } from "@/redux/actions/scorers";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import React from "react";
+import { setScorers } from "@/redux/scorersSlice";
+import React, { useEffect } from "react";
 
 const MenuNav = (props: { currentArea: any; currentCompetition: any }) => {
 	const data = {
@@ -10,13 +11,13 @@ const MenuNav = (props: { currentArea: any; currentCompetition: any }) => {
 		goalscorers: "Goalscorers",
 	};
 
-	const dispatch = useAppDispatch()
+	const dispatch = useAppDispatch();
 
 	const handleChooseWhatToShow = (option: string) => {
-		dispatch(setActiveOptionShowAction(option))
-	}
+		dispatch(setActiveOptionShowAction(option));
+	};
 
-	const {activeWhatToShow} = useAppSelector(s=>s?.data)
+	const { activeWhatToShow, activeLeague } = useAppSelector((s) => s?.data);
 
 	return (
 		<div>
@@ -27,12 +28,20 @@ const MenuNav = (props: { currentArea: any; currentCompetition: any }) => {
 			</div>
 
 			<div className="mb-32 flex gap-8 font-bold drop-shadow-2xl">
-				{Object?.values(data)?.map((el) => (
-					<div className={` ${activeWhatToShow===el ?
-						"bg-light-blue drop-shadow-2xl" : "bg-white text-black "}  px-2 py-1 shadow-xs shadow-gray-300 cursor-pointer`} onClick={()=>handleChooseWhatToShow(el)}>
-						<p className="drop-shadow-2xl">{el}</p>
-					</div>
-				))}
+				{Object?.values(data)?.map((el) => {
+					return (
+						<div
+							className={` ${
+								activeWhatToShow === el
+									? "bg-light-blue drop-shadow-2xl"
+									: "bg-white text-black "
+							} px-2 py-1 shadow-xs shadow-gray-300 cursor-pointer`}
+							onClick={() => handleChooseWhatToShow(el)}
+						>
+							<p className="drop-shadow-2xl">{el}</p>
+						</div>
+					);
+				})}
 			</div>
 		</div>
 	);

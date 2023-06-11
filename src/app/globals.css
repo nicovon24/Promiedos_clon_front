@@ -55,3 +55,8 @@
     opacity: 0.8;
  }
 }
+
+.page-active{
+  background-color: #5a849d !important;
+  color: white;
+}
