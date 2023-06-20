@@ -3,9 +3,9 @@ import { setActiveLeague, setPositions, setWhatToShow } from "../dataSlice";
 import { Dispatch } from "react";
 import { Action } from "redux";
 
-export const getPositionsLeague = (league: string | undefined) => async (dispatch: Dispatch<Action>) => {
+export const getPositionsLeague = (league: string | undefined, season: string | undefined) => async (dispatch: Dispatch<Action>) => {
 	try {
-		const response = await axios(`/positions?competition=${league}`);
+		const response = await axios(`/positions?competition=${league}&season=${season}`);
 		dispatch(setPositions(response.data.positions));
 	} catch (error) {
 		return error

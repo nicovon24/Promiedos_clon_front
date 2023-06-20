@@ -28,11 +28,14 @@ export const positionsSlice = createSlice({
     },
     setWhatToShow: (state, action: PayloadAction<any>) => {
       state.activeWhatToShow = action.payload
+    },
+    setSeason: (state, action: PayloadAction<any>) => {
+      state.currentSeason = action.payload
     }
   }
 });
 
-export const { setPositions, setActiveLeague, setWhatToShow } =
+export const { setPositions, setActiveLeague, setWhatToShow, setSeason } =
   positionsSlice.actions;
 
 export const getPositions = (state: RootState) => state.data;

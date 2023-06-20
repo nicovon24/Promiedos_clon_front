@@ -17,22 +17,21 @@ const League = () => {
 	const router = useRouter();
 	const { league } = router.query; //PL, SA, etc
 	const [isLoaded, setIsLoaded] = useState(false);
-	const [isLoadedPositions, setIsLoadedPositions] = useState(false)
 
 	const dispatch = useAppDispatch();
-	const {activeLeague} = useAppSelector(s=>s?.data)
+	const {activeLeague, currentSeason} = useAppSelector(s=>s?.data)
 
 	React.useEffect(() => {
 		setIsLoaded(false);
 		if (league) {
-			dispatch(getPositionsLeague(league?.toString())).then(() => {
+			dispatch(getPositionsLeague(league?.toString(), currentSeason)).then(() => {
 				setTimeout(() => {
 					setIsLoaded(true);
 				}, 1000);
 				dispatch(setActiveLeagueAction(league?.toString()));
 			});
 		}
-	}, [league]);
+	}, [league, currentSeason]);
 
 	const { currentCompetition, currentArea, activeWhatToShow} = useAppSelector((s) => s?.data);
 	const leaguePosition = useAppSelector((s)=>s?.scorers?.activeLeague)

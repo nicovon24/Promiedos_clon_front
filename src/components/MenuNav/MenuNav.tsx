@@ -1,5 +1,6 @@
 import { setActiveOptionShowAction } from "@/redux/actions/positions";
 import { setScorersFunction } from "@/redux/actions/scorers";
+import { setSeason } from "@/redux/dataSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { setScorers } from "@/redux/scorersSlice";
 import React, { useEffect } from "react";
@@ -17,7 +18,7 @@ const MenuNav = (props: { currentArea: any; currentCompetition: any }) => {
 		dispatch(setActiveOptionShowAction(option));
 	};
 
-	const { activeWhatToShow, activeLeague } = useAppSelector((s) => s?.data);
+	const { activeWhatToShow, currentSeason } = useAppSelector((s) => s?.data);
 
 	return (
 		<div>
@@ -42,6 +43,13 @@ const MenuNav = (props: { currentArea: any; currentCompetition: any }) => {
 						</div>
 					);
 				})}
+			
+				<select className="bg-white text-black" onChange={(e)=>dispatch(setSeason(e.target.value))} value={currentSeason}>
+					<option value="">Select a year...</option>
+					<option value="2021">2021</option>
+					<option value="2022">2022</option>
+					<option value="2023">2023</option>
+				</select>
 			</div>
 		</div>
 	);

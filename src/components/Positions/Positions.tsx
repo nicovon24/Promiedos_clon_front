@@ -42,7 +42,7 @@ const Positions = () => {
 					} = team;
 					return (
 						<tr key={index} className={(index + 1) % 2 === 0 ? "bg-[#d5d5d5]" : ""}>
-							<td className={paddingTR}>{position}</td>
+							<td className={paddingTR}>{index + 1}</td>
 							<td className={paddingTR + " text-left flex items-center"}>
 								<img src={team?.team?.crest} className="w-5 h-5 inline-block mr-2" />
 								<span className="truncate">{team?.team?.name}</span>
